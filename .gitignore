@@ -2,3 +2,5 @@ build/
 dist/
 doc/
 nbproject/private/
+/.project
+**/.DS_Store

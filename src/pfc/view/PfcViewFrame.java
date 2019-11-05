@@ -87,6 +87,7 @@ public class PfcViewFrame extends javax.swing.JFrame {
         jMenuExportMail = new javax.swing.JMenu();
         jMenuItemToMbox = new javax.swing.JMenuItem();
         jMenuItemToMboxToc = new javax.swing.JMenuItem();
+        jMenuItemToText = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JSeparator();
         jMenuItemOptions = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JSeparator();
@@ -207,11 +208,15 @@ public class PfcViewFrame extends javax.swing.JFrame {
         jMenuExportMail.setIcon(ImageConstants.createImageIcon(ImageConstants.ICON_BLANK));
         jMenuExportMail.setMnemonic('M');
         jMenuExportMail.setText("Export Mail");
+
         jMenuItemToMbox.setAction(toolsExportMboxAction);
         jMenuExportMail.add(jMenuItemToMbox);
 
         jMenuItemToMboxToc.setAction(toolsExportMboxTocAction);
         jMenuExportMail.add(jMenuItemToMboxToc);
+
+        jMenuItemToText.setAction(toolsExportTextAction);
+        jMenuExportMail.add(jMenuItemToText);
 
         jMenuTools.add(jMenuExportMail);
 
@@ -324,6 +329,7 @@ public class PfcViewFrame extends javax.swing.JFrame {
     private Action toolsExportFaveAction = new ToolsExportAction(Exporter.FAVE_HTML);
     private Action toolsExportMboxAction = new ToolsExportAction(Exporter.MBOX);
     private Action toolsExportMboxTocAction = new ToolsExportAction(Exporter.MBOX_TOC);
+    private Action toolsExportTextAction = new ToolsExportAction(Exporter.TEXT);
     private Action toolsOptionsAction = new ToolsOptionsAction();
     private Action toolsAboutAction = new ToolsAboutAction();
     
@@ -346,6 +352,7 @@ public class PfcViewFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemOptions;
     private javax.swing.JMenuItem jMenuItemToHtml;
     private javax.swing.JMenuItem jMenuItemToMbox;
+    private javax.swing.JMenuItem jMenuItemToText;
     private javax.swing.JMenuItem jMenuItemToMboxToc;
     private javax.swing.JMenu jMenuTools;
     private javax.swing.JOptionPane jOptionPane1;
@@ -553,11 +560,16 @@ public class PfcViewFrame extends javax.swing.JFrame {
                     putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_C));
                     putValue(SMALL_ICON, ImageConstants.createImageIcon(ImageConstants.ICON_BLANK));
                     break;
+                case Exporter.TEXT:
+                   putValue(NAME, "To Text...");
+                   putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_T));
+                   putValue(SMALL_ICON, ImageConstants.createImageIcon(ImageConstants.ICON_BLANK));
+                   break;
                 default:
-                    putValue(NAME, "To Text...");
-                    putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_T));
-                    putValue(SMALL_ICON, ImageConstants.createImageIcon(ImageConstants.ICON_BLANK));
-                    break;
+                   putValue(NAME, "To Text...");
+                   putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_Z));
+                   putValue(SMALL_ICON, ImageConstants.createImageIcon(ImageConstants.ICON_BLANK));
+                   break;
             }
         }
         

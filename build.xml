@@ -5,7 +5,7 @@
 <!-- If not, you may prefer to adjust the basedir, or move some directories around. -->
 <!-- The idea is that both Ant and NetBeans have to know what the package root is -->
 <!-- for the classes in your application. -->
-<project name="pfcview" default="compile" basedir=".">
+<project name="pfcview" default="all" basedir=".">
 
     <!-- You can set up any variables you want used throughout the script here. -->
     <property name="build.dir" location="build" />
@@ -52,8 +52,6 @@
         <javac debug="true" deprecation="true" 
             destdir="${build.dir}" 
             srcdir="${src.dir}"
-            source="1.4"
-            target="1.4"
             includes="**/*.java">
             <classpath refid="base.classpath" />
         </javac>

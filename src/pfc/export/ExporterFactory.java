@@ -54,6 +54,9 @@ public class ExporterFactory {
             case Exporter.FAVE_HTML:
                 exporter = new FavoriteHtmlExporter();
                 break;
+            case Exporter.TEXT:
+               exporter = new TextMailExporter();
+               break;
             default:
                 // Do nothing.
         }

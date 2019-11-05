@@ -283,11 +283,17 @@ public class MailMessage {
      */
     public String getBodyText() {
         StringBuffer buffer = new StringBuffer(body);
+        byte bytes[] = body.getBytes();
         String separator = System.getProperty("line.separator");
         boolean htmlDoc = false;
         int pos = 0;
         // Move through body text.
         while (pos < buffer.length()) {
+            if ((pos < bytes.length) && (bytes[pos] == 0x7f) && htmlDoc) {
+                //buffer.delete(pos, pos+1);
+                //buffer.insert(pos, "<br>");
+            }
+            
             String token = nextToken(buffer, pos);
             if (token != null) {
                 if (htmlDoc) {
@@ -300,6 +306,7 @@ public class MailMessage {
                         htmlDoc = true;
                     }
                     else if (token.equalsIgnoreCase("<BR>")) {
+                        System.out.println("br");
                         buffer.delete(pos, pos + token.length());
                         buffer.insert(pos, separator);
                     }
@@ -496,12 +503,16 @@ public class MailMessage {
      *  Converts byte array with V7 header data to a character string.  
      *  Replaces all occurences of Del (0x7f) with system line separator.
      */
-    private String toV7String(byte[] data) {
+    public String toV7String(byte[] data) {
         StringBuffer buffer = new StringBuffer();
         String separator = System.getProperty("line.separator");
         for (int i = 0; i < data.length; i++) {
             if (data[i] == 0x7f) {
-                buffer.append(separator);
+                if (isHtml()) {
+                    buffer.append("<br>");
+                }
+                else
+                   buffer.append(separator);
             }
             else {
                 buffer.append((char)data[i]);
@@ -526,6 +537,7 @@ public class MailMessage {
             result.append(new String(buffer, 0, length));
         }
         catch (DataFormatException dfx) {
+            result.append(dfx.toString());
             result.append(separator).append(dfx.toString());
         }
         return result.toString();

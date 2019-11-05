@@ -40,6 +40,7 @@ public interface Exporter {
     public static final int MBOX = 1;
     public static final int MBOX_TOC = 2;
     public static final int FAVE_HTML = 3;
+    public static final int TEXT = 4;
 
     /** Sets file to receive exported items.
      */
